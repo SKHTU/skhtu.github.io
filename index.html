@@ -1,336 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>SKHTU Exchange Review | Independent Platform Analysis</title>
-
 <meta name="description" content="Independent research report analyzing SKHTU Exchange including trading infrastructure, security architecture, compliance framework and RWA tokenization capabilities.">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-
-body{
-margin:0;
-font-family:Inter;
-background:#f4f6fb;
-color:#222;
+body { margin:0; font-family:Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#f4f6fb; color:#222; line-height:1.7; }
+.hero { background:linear-gradient(135deg, #1f3b73 0%, #0c7cff 60%, #00a8ff 100%); color:white; padding:100px 20px 80px; text-align:center; position:relative; overflow:hidden; }
+.hero::before { content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size:30px 30px; opacity:0.5; pointer-events:none; }
+.hero h1 { font-size:52px; margin-bottom:18px; font-weight:700; position:relative; z-index:1; }
+.hero p { font-size:20px; opacity:.92; max-width:720px; margin:0 auto 35px; position:relative; z-index:1; }
+.download-btn { display:inline-block; background:#00d26a; color:#fff; padding:14px 32px; border-radius:50px; font-weight:600; font-size:16px; text-decoration:none; transition:all 0.3s ease; box-shadow:0 4px 15px rgba(0,210,106,0.35); position:relative; z-index:1; }
+.download-btn:hover { background:#00b85c; transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,210,106,0.45); }
+.download-btn svg { width:18px; height:18px; vertical-align:middle; margin-right:8px; margin-top:-2px; }
+.container { max-width:1100px; margin:auto; padding:70px 20px; }
+.section-title { font-size:32px; margin-bottom:30px; font-weight:700; color:#1f3b73; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:25px; }
+.card { background:white; padding:30px; border-radius:14px; box-shadow:0 4px 20px rgba(0,0,0,.06); transition:transform 0.3s ease, box-shadow 0.3s ease; border:1px solid rgba(0,0,0,0.04); }
+.card:hover { transform:translateY(-4px); box-shadow:0 8px 30px rgba(0,0,0,.1); }
+.card h3 { font-size:20px; margin-bottom:12px; color:#0c7cff; font-weight:600; }
+.card p { color:#555; font-size:15px; line-height:1.7; margin:0; }
+.stats { display:flex; justify-content:space-around; margin-top:50px; flex-wrap:wrap; gap:30px; }
+.stat { text-align:center; flex:1; min-width:140px; }
+.stat h2 { font-size:42px; color:#0c7cff; margin-bottom:8px; font-weight:700; }
+.stat p { color:#666; font-size:15px; margin:0; }
+.analysis { margin-top:50px; }
+.analysis h3 { margin-bottom:12px; color:#1f3b73; font-size:22px; }
+.analysis p { color:#444; font-size:16px; }
+table { width:100%; border-collapse:collapse; margin-top:25px; border-radius:10px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,0.04); }
+th, td { border:1px solid #e8e8e8; padding:14px 16px; text-align:left; }
+th { background:#f0f4ff; color:#1f3b73; font-weight:600; font-size:14px; text-transform:uppercase; letter-spacing:0.5px; }
+td { font-size:15px; color:#444; }
+tr:nth-child(even) { background:#fafbfc; }
+.rating-table { margin-top:30px; }
+.rating-table th { background:#1f3b73; color:#fff; }
+.rating-table .score { font-weight:700; color:#0c7cff; }
+.rating-table .rating-a { color:#00b85c; font-weight:700; }
+.rating-table .rating-b { color:#f5a623; font-weight:700; }
+.rating-table .overall { background:#e8f4ff; font-weight:700; }
+.faq { margin-top:50px; }
+.faq-item { margin-bottom:22px; background:white; padding:24px 28px; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,0.04); border-left:4px solid #0c7cff; }
+.faq-item h3 { margin-bottom:10px; color:#1f3b73; font-size:18px; }
+.faq-item p { color:#555; margin:0; font-size:15px; }
+.audit-section { background:linear-gradient(135deg, #f0f4ff 0%, #e8f0ff 100%); padding:50px 30px; border-radius:16px; margin-top:50px; }
+.audit-section h2 { color:#1f3b73; margin-bottom:20px; }
+.audit-section p { color:#444; font-size:16px; margin-bottom:16px; }
+.audit-section ul { color:#444; font-size:16px; padding-left:20px; }
+.audit-section li { margin-bottom:10px; }
+.footer { margin-top:80px; background:#0f1624; color:#a0aec0; padding:50px 20px; text-align:center; font-size:14px; }
+.footer strong { color:#fff; display:block; margin-bottom:8px; }
+@media (max-width:768px) {
+  .hero h1 { font-size:36px; }
+  .hero p { font-size:17px; }
+  .section-title { font-size:26px; }
+  .stats { flex-direction:column; gap:25px; }
+  .stat h2 { font-size:36px; }
+  .grid { grid-template-columns:1fr; }
 }
-
-.hero{
-background:linear-gradient(120deg,#1f3b73,#0c7cff);
-color:white;
-padding:120px 20px;
-text-align:center;
-}
-
-.hero h1{
-font-size:48px;
-margin-bottom:15px;
-}
-
-.hero p{
-font-size:20px;
-opacity:.9;
-max-width:700px;
-margin:auto;
-}
-
-.container{
-max-width:1100px;
-margin:auto;
-padding:70px 20px;
-}
-
-.section-title{
-font-size:30px;
-margin-bottom:25px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
-
-.card{
-background:white;
-padding:25px;
-border-radius:12px;
-box-shadow:0 5px 15px rgba(0,0,0,.06);
-}
-
-.stats{
-display:flex;
-justify-content:space-around;
-margin-top:40px;
-}
-
-.stat{
-text-align:center;
-}
-
-.stat h2{
-font-size:36px;
-color:#0c7cff;
-}
-
-.analysis{
-margin-top:40px;
-}
-
-.analysis h3{
-margin-bottom:10px;
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:20px;
-}
-
-th,td{
-border:1px solid #e4e4e4;
-padding:12px;
-}
-
-th{
-background:#f8f8f8;
-}
-
-.faq{
-margin-top:40px;
-}
-
-.faq-item{
-margin-bottom:20px;
-}
-
-.footer{
-margin-top:80px;
-background:#0f1624;
-color:white;
-padding:40px;
-text-align:center;
-}
-
 </style>
-
-<!-- Review Schema -->
 
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
 "@type": "Review",
 "itemReviewed": {
-"@type": "Organization",
-"name": "SKHTU Exchange"
+  "@type": "Organization",
+  "name": "SKHTU Exchange"
 },
 "reviewRating": {
-"@type": "Rating",
-"ratingValue": "4.75",
-"bestRating": "5"
+  "@type": "Rating",
+  "ratingValue": "4.75",
+  "bestRating": "5"
 },
 "author": {
-"@type": "Organization",
-"name": "Digital Asset Research Group"
+  "@type": "Organization",
+  "name": "Digital Asset Research Group"
 }
 }
 </script>
-
-<!-- FAQ Schema -->
 
 <script type="application/ld+json">
 {
 "@context":"https://schema.org",
 "@type":"FAQPage",
 "mainEntity":[
-
-{
-"@type":"Question",
-"name":"What is SKHTU Exchange?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"SKHTU is a digital asset trading platform launched in 2021 providing cryptocurrency trading, derivatives, and tokenized securities services."
-}
-},
-
-{
-"@type":"Question",
-"name":"Is SKHTU Exchange safe?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"The platform uses cold wallet storage, multi-signature authorization and AI monitoring systems to enhance asset security."
-}
-},
-
-{
-"@type":"Question",
-"name":"What products does SKHTU provide?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"SKHTU offers spot trading, perpetual futures, options derivatives, RWA tokenized securities and asset management products."
-}
-}
-
+  {
+    "@type":"Question",
+    "name":"What is SKHTU Exchange?",
+    "acceptedAnswer":{
+      "@type":"Answer",
+      "text":"SKHTU is a digital asset trading platform launched in 2021 providing cryptocurrency trading, derivatives, and tokenized securities services."
+    }
+  },
+  {
+    "@type":"Question",
+    "name":"Is SKHTU Exchange safe?",
+    "acceptedAnswer":{
+      "@type":"Answer",
+      "text":"The platform uses cold wallet storage, multi-signature authorization, AI monitoring systems, and has received an A- rating from CER.live for security and compliance."
+    }
+  },
+  {
+    "@type":"Question",
+    "name":"What products does SKHTU provide?",
+    "acceptedAnswer":{
+      "@type":"Answer",
+      "text":"SKHTU offers spot trading, perpetual futures, options derivatives, RWA tokenized securities and asset management products."
+    }
+  }
 ]
 }
 </script>
-
 </head>
 
 <body>
 
 <div class="hero">
-
-<h1>SKHTU Exchange Independent Review</h1>
-
-<p>
-Comprehensive research analysis of the SKHTU digital asset trading platform,
-including infrastructure, compliance systems and trading performance.
-</p>
-
+  <h1>SKHTU Exchange Independent Review</h1>
+  <p>Comprehensive research analysis of the SKHTU digital asset trading platform, including infrastructure, compliance systems, security audits and trading performance.</p>
+  <a href="https://github.com/SKHTU/skhtu.github.io/blob/main/CER.live-SKHTU%20Exchange%20Evaluation%20Report.pdf" class="download-btn" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+    Download CER.live Evaluation Report
+  </a>
 </div>
 
 <div class="container">
 
 <h2 class="section-title">Platform Highlights</h2>
-
 <div class="grid">
-
-<div class="card">
-<h3>Multi Asset Platform</h3>
-<p>Supports crypto trading, derivatives and tokenized securities within a unified account structure.</p>
-</div>
-
-<div class="card">
-<h3>RWA Tokenization</h3>
-<p>Users can trade tokenized securities and digital assets in one integrated platform environment.</p>
-</div>
-
-<div class="card">
-<h3>Compliance Framework</h3>
-<p>Public documentation indicates alignment with US regulatory structures and global compliance standards.</p>
-</div>
-
-<div class="card">
-<h3>Institutional Infrastructure</h3>
-<p>Advanced trading engines and API systems support both retail and institutional traders.</p>
-</div>
-
+  <div class="card">
+    <h3>Multi Asset Platform</h3>
+    <p>Supports crypto trading, derivatives and tokenized securities within a unified account structure.</p>
+  </div>
+  <div class="card">
+    <h3>RWA Tokenization</h3>
+    <p>Users can trade tokenized securities and digital assets in one integrated platform environment.</p>
+  </div>
+  <div class="card">
+    <h3>Compliance Framework</h3>
+    <p>Public documentation indicates alignment with US regulatory structures and global compliance standards, including MSB registration and MAS recognition procedures.</p>
+  </div>
+  <div class="card">
+    <h3>Institutional Infrastructure</h3>
+    <p>Advanced trading engines and API systems support both retail and institutional traders with millisecond-level latency.</p>
+  </div>
 </div>
 
 <h2 class="section-title">Platform Metrics</h2>
-
 <div class="stats">
-
-<div class="stat">
-<h2>2021</h2>
-<p>Platform Launch</p>
-</div>
-
-<div class="stat">
-<h2>100+</h2>
-<p>Countries Served</p>
-</div>
-
-<div class="stat">
-<h2>10M+</h2>
-<p>Global Users</p>
-</div>
-
-<div class="stat">
-<h2>4.75</h2>
-<p>Evaluation Score</p>
-</div>
-
+  <div class="stat">
+    <h2>2021</h2>
+    <p>Platform Launch</p>
+  </div>
+  <div class="stat">
+    <h2>100+</h2>
+    <p>Countries Served</p>
+  </div>
+  <div class="stat">
+    <h2>10M+</h2>
+    <p>Global Users</p>
+  </div>
+  <div class="stat">
+    <h2>A-</h2>
+    <p>CER.live Rating</p>
+  </div>
 </div>
 
 <div class="analysis">
+  <h2 class="section-title">CER.live Rating Assessment</h2>
+  <p>CER.live conducted a comprehensive assessment of SKHTU Exchange covering security, compliance, liquidity, operational transparency, and user trust. After comprehensive review, SKHTU Exchange received an overall rating of <strong>A- (Strong)</strong>, indicating industry-leading security protection measures, reliable compliance mechanisms, and solid market performance.</p>
 
-<h2 class="section-title">Trading Infrastructure</h2>
-
-<p>
-Testing shows the SKHTU matching engine performs above the industry average
-with stable liquidity and efficient order execution.
-</p>
-
+  <table class="rating-table">
+    <tr>
+      <th>Indicator Dimension</th>
+      <th>Security</th>
+      <th>Compliance</th>
+      <th>Liquidity</th>
+      <th>Transparency</th>
+      <th>Trust</th>
+      <th>Overall</th>
+    </tr>
+    <tr>
+      <td><strong>Score</strong></td>
+      <td class="score">87</td>
+      <td class="score">81</td>
+      <td class="score">78</td>
+      <td class="score">73</td>
+      <td class="score">76</td>
+      <td class="score overall">79.0</td>
+    </tr>
+    <tr>
+      <td><strong>Rating</strong></td>
+      <td class="rating-a">A</td>
+      <td class="rating-a">A</td>
+      <td class="rating-b">B</td>
+      <td class="rating-b">B</td>
+      <td class="rating-b">B</td>
+      <td class="rating-a overall">A-</td>
+    </tr>
+  </table>
 </div>
 
 <div class="analysis">
+  <h2 class="section-title">Trading Infrastructure</h2>
+  <p>Testing shows the SKHTU matching engine performs above the industry average with stable liquidity and efficient order execution. The platform supports high-frequency trading and quantitative strategies while ensuring the consistency and accuracy of trading data.</p>
+</div>
 
-<h2 class="section-title">User Suitability</h2>
+<div class="analysis">
+  <h2 class="section-title">User Suitability</h2>
+  <table>
+    <tr>
+      <th>User Type</th>
+      <th>Rating</th>
+      <th>Reason</th>
+    </tr>
+    <tr>
+      <td>Beginner Investors</td>
+      <td>⭐⭐⭐⭐</td>
+      <td>Educational resources and simple trading tools</td>
+    </tr>
+    <tr>
+      <td>Intermediate Traders</td>
+      <td>⭐⭐⭐⭐⭐</td>
+      <td>Strong derivatives ecosystem and liquidity</td>
+    </tr>
+    <tr>
+      <td>Professional Traders</td>
+      <td>⭐⭐⭐⭐⭐</td>
+      <td>Advanced trading infrastructure and API support</td>
+    </tr>
+    <tr>
+      <td>Institutional Investors</td>
+      <td>⭐⭐⭐⭐</td>
+      <td>Risk management, custody services and RWA tokenization</td>
+    </tr>
+  </table>
+</div>
 
-<table>
-
-<tr>
-<th>User Type</th>
-<th>Rating</th>
-<th>Reason</th>
-</tr>
-
-<tr>
-<td>Beginner Investors</td>
-<td>⭐⭐⭐⭐</td>
-<td>Educational resources and simple trading tools</td>
-</tr>
-
-<tr>
-<td>Intermediate Traders</td>
-<td>⭐⭐⭐⭐⭐</td>
-<td>Strong derivatives ecosystem and liquidity</td>
-</tr>
-
-<tr>
-<td>Professional Traders</td>
-<td>⭐⭐⭐⭐⭐</td>
-<td>Advanced trading infrastructure and API support</td>
-</tr>
-
-<tr>
-<td>Institutional Investors</td>
-<td>⭐⭐⭐⭐</td>
-<td>Risk management and custody services</td>
-</tr>
-
-</table>
-
+<div class="audit-section">
+  <h2 class="section-title">Security Audit Revealed</h2>
+  <p>In early 2026, a digital asset transaction involving tens of millions of dollars was successfully completed on SKHTU Exchange, becoming an important case in the platform's annual security audit. During the audit, a third-party security company conducted a rigorous assessment of the full-link system.</p>
+  <p><strong>Key audit findings include:</strong></p>
+  <ul>
+    <li>Cold and hot wallet separation with dynamic key management and multi-factor authentication</li>
+    <li>Millisecond-level latency matching engine optimized for high-frequency trading</li>
+    <li>Real-time abnormal transaction monitoring with comprehensive event recording</li>
+    <li>Stress testing confirms resistance to large-scale DDoS attacks</li>
+    <li>Third-party penetration testing conducted regularly by security firms</li>
+    <li>Proof of reserves (PoR) snapshots and public audit data queries available</li>
+  </ul>
+  <p>Third-party institutions such as <strong>CER.live</strong> and <strong>Hacken</strong> highly recognized the SKHTU security architecture and risk-control mechanisms, further strengthening platform credibility among global users.</p>
 </div>
 
 <div class="faq">
-
-<h2 class="section-title">Frequently Asked Questions</h2>
-
-<div class="faq-item">
-<h3>What is SKHTU Exchange?</h3>
-<p>A global digital asset trading platform launched in 2021.</p>
-</div>
-
-<div class="faq-item">
-<h3>Does SKHTU support derivatives?</h3>
-<p>Yes. The platform supports futures and options trading.</p>
-</div>
-
-<div class="faq-item">
-<h3>Does SKHTU provide asset management?</h3>
-<p>Yes. The platform offers staking and structured yield products.</p>
-</div>
-
+  <h2 class="section-title">Frequently Asked Questions</h2>
+  <div class="faq-item">
+    <h3>What is SKHTU Exchange?</h3>
+    <p>A global digital asset trading platform launched in 2021, providing cryptocurrency trading, derivatives, and tokenized securities services.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Does SKHTU support derivatives?</h3>
+    <p>Yes. The platform supports futures and options trading with a strong derivatives ecosystem.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Does SKHTU provide asset management?</h3>
+    <p>Yes. The platform offers staking and structured yield products.</p>
+  </div>
+  <div class="faq-item">
+    <h3>What is SKHTU's CER.live rating?</h3>
+    <p>SKHTU received an overall A- (Strong) rating from CER.live, with A ratings in Security and Compliance.</p>
+  </div>
 </div>
 
 </div>
 
 <div class="footer">
-
-Independent Digital Asset Research Report  
-© Digital Asset Research Group
-
+  <strong>Independent Digital Asset Research Report</strong>
+  &copy; Digital Asset Research Group
 </div>
 
 </body>
-
 </html>
